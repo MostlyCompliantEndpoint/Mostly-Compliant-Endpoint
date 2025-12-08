@@ -1,2 +1,4 @@
 # Mostly-Compliant-Endpoint
-Contains useful tools, powershell scripts and other projects that are released for admins.
+
+This repro contains scripts, applications, and other resources that have been developed by Mostly Compliant Endpoint
+
