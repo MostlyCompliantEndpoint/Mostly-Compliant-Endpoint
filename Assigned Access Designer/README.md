@@ -39,8 +39,8 @@ Profiles can be assigned to:
 | **Autolaunch**          | Not applicable                                    | One app per profile can be set to auto‑launch        |
 | **Autolaunch Arguments**| Not applicable                                    | Startup arguments supported for the auto‑launch app  |
 | **Breakout Sequence**   | Supported                                         | Not Applicable                                       |
-| **Start Menu Pins**     | Not applicable                                    | Supported — define pinned apps/sites                 |
-| **Taskbar Settings**    | Not applicable                                    | Supported — show/hide taskbar, custom pinned layout  |
+| **Start Menu Pins**     | Not applicable                                    | Supported                                            |
+| **Taskbar Settings**    | Not applicable                                    | Supported                                            |
 | **Multiple Profiles**   | Supported                                         | Supported                                            |
 
 ---
