@@ -33,16 +33,15 @@ Profiles can be assigned to:
 ---
 
 ## Applications & Deployment Features
-| Feature                | Single‑App Kiosk                                   | Multi‑App Kiosk                                      |
+| Feature                 | Single‑App Kiosk                                  | Multi‑App Kiosk                                      |
 |-------------------------|---------------------------------------------------|------------------------------------------------------|
 | **Supported Apps**      | UWP apps or Microsoft Edge (full screen)          | UWP apps and traditional desktop (Win32) apps        |
-| **Autolaunch**          | Not applicable (only one app runs)                | One app per profile can be set to auto‑launch        |
+| **Autolaunch**          | Not applicable                                    | One app per profile can be set to auto‑launch        |
 | **Autolaunch Arguments**| Not applicable                                    | Startup arguments supported for the auto‑launch app  |
-| **Launch Arguments**    | Supported (e.g., Edge kiosk mode, custom site)    | Supported for the auto‑launch app only               |
-| **Breakout Sequence**   | Supported (custom key combo to exit kiosk mode)   | Supported (custom key combo to exit kiosk mode)      |
+| **Breakout Sequence**   | Supported                                         | Not Applicable                                       |
 | **Start Menu Pins**     | Not applicable                                    | Supported — define pinned apps/sites                 |
 | **Taskbar Settings**    | Not applicable                                    | Supported — show/hide taskbar, custom pinned layout  |
-| **Multiple Profiles**   | Supported — different apps per user/group         | Supported — different app sets per user/group        |
+| **Multiple Profiles**   | Supported                                         | Supported                                            |
 
 ---
 
@@ -60,7 +59,7 @@ Intune will push the configuration to devices, enforcing the kiosk or restricted
 
 ---
 
-## 📜 License
+## License
 This project is released under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
