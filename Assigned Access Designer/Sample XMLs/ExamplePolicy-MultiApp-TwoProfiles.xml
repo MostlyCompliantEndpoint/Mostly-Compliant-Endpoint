@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AssignedAccessConfiguration xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rs5="http://schemas.microsoft.com/AssignedAccess/201810/config" xmlns:v3="http://schemas.microsoft.com/AssignedAccess/2020/config" xmlns:v4="http://schemas.microsoft.com/AssignedAccess/2021/config" xmlns:v5="http://schemas.microsoft.com/AssignedAccess/2022/config" xmlns="http://schemas.microsoft.com/AssignedAccess/2017/config">
   <Profiles>
-    <Profile Id="{4ee21c61-4bdb-45f3-b44e-1111111test1}" Name="">
+    <Profile Id="{ea6545dc-a03a-42a6-8988-d8450e08bf2c}" Name="">
       <AllAppsList>
         <AllowedApps>
           <App AppUserModelId="Microsoft.WindowsCalculator_8wekyb3d8bbwe!App" />
@@ -43,7 +43,7 @@
   </CustomTaskbarLayoutCollection>
 </LayoutModificationTemplate>]]></v5:TaskbarLayout>
     </Profile>
-    <Profile Id="{4ee21c61-4bdb-45f3-b44e-2222222test2}" Name="">
+    <Profile Id="{7b1499c6-086b-4e33-905a-37c1eb76e3c0}" Name="">
       <AllAppsList>
         <AllowedApps>
           <App AppUserModelId="Microsoft.WindowsCalculator_8wekyb3d8bbwe!App" />
@@ -73,35 +73,35 @@
   </Profiles>
   <Configs>
     <Config>
-      <v3:GlobalProfile Id="{4ee21c61-4bdb-45f3-b44e-1111111test1}" />
+      <v3:GlobalProfile Id="{ea6545dc-a03a-42a6-8988-d8450e08bf2c}" />
     </Config>
     <Config>
       <AutologonAccount rs5:DisplayName="Microsoft Learn example" />
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-1111111test1}" />
+      <DefaultProfile Id="{ea6545dc-a03a-42a6-8988-d8450e08bf2c}" />
     </Config>
     <Config>
       <Account>LocalUser</Account>
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-1111111test1}" />
+      <DefaultProfile Id="{ea6545dc-a03a-42a6-8988-d8450e08bf2c}" />
     </Config>
     <Config>
       <Account>contoso\user</Account>
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-2222222test2}" />
+      <DefaultProfile Id="{7b1499c6-086b-4e33-905a-37c1eb76e3c0}" />
     </Config>
     <Config>
       <Account>AzureAD\user@contoso.onmicrosoft.com</Account>
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-2222222test2}" />
+      <DefaultProfile Id="{7b1499c6-086b-4e33-905a-37c1eb76e3c0}" />
     </Config>
     <Config>
       <UserGroup Name="groupname" Type="LocalGroup" />
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-2222222test2}" />
+      <DefaultProfile Id="{7b1499c6-086b-4e33-905a-37c1eb76e3c0}" />
     </Config>
     <Config>
       <UserGroup Name="contoso\groupname" Type="ActiveDirectoryGroup" />
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-2222222test2}" />
+      <DefaultProfile Id="{7b1499c6-086b-4e33-905a-37c1eb76e3c0}" />
     </Config>
     <Config>
       <UserGroup Name="c5dac4d1-7d37-4a4e-97af-30ea067805f3" Type="AzureActiveDirectoryGroup" />
-      <DefaultProfile Id="{4ee21c61-4bdb-45f3-b44e-1111111test1}" />
+      <DefaultProfile Id="{ea6545dc-a03a-42a6-8988-d8450e08bf2c}" />
     </Config>
   </Configs>
 </AssignedAccessConfiguration>
