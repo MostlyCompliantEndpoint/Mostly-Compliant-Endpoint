@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>AssignedAccessDesigner</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>enable</Nullable>
+	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	  <WindowsPackageType>None</WindowsPackageType>
+
+	  <AssemblyVersion>1.0.6.0</AssemblyVersion>
+	  <FileVersion>1.0.6.0</FileVersion>
+	  <Version>1.0.6</Version>
+	  <!-- Semantic version for NuGet and publish -->
+	  <ProductVersion>1.0.6.0</ProductVersion>
+
+	  <SelfContained>true</SelfContained>
+
+	  <!-- Optional: produce a single EXE (still extracts some native bits at runtime) -->
+	  <PublishSingleFile>true</PublishSingleFile>
+
+		  <!-- Optional: reduce size (be careful with reflection-heavy code) -->
+		  <PublishTrimmed>true</PublishTrimmed>
+		  <!-- start with false; turn true only after verifying your app survives trimming -->
+
+	  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Schemas\AssignedAccess_2017.xsd" />
+    <Content Remove="Assets\Schemas\AssignedAccess_201810.xsd" />
+    <Content Remove="Assets\Schemas\AssignedAccess_2020.xsd" />
+    <Content Remove="Assets\Schemas\AssignedAccess_202010.xsd" />
+    <Content Remove="Assets\Schemas\AssignedAccess_2021.xsd" />
+    <Content Remove="Assets\Schemas\AssignedAccess_2022.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Schemas\AssignedAccess_2017.xsd" />
+    <None Remove="Assets\Schemas\AssignedAccess_201810.xsd" />
+    <None Remove="Assets\Schemas\AssignedAccess_2020.xsd" />
+    <None Remove="Assets\Schemas\AssignedAccess_202010.xsd" />
+    <None Remove="Assets\Schemas\AssignedAccess_2021.xsd" />
+    <None Remove="Assets\Schemas\AssignedAccess_2022.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_2017.xsd" />
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_201810.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_2020.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_202010.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_2021.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Schemas\AssignedAccess_2022.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+    <PackageReference Include="System.Text.Json" Version="10.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\HelpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>4151904EF8C8118AEA53E528E5650D888ED8D5AC</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>Assets\AssignedAccessDesigner-256.ico</ApplicationIcon>
+  </PropertyGroup>
+</Project>

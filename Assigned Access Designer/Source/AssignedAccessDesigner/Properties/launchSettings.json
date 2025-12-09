@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "AssignedAccessDesigner (Package)": {
+      "commandName": "MsixPackage",
+      "alwaysReinstallApp": true,
+      "msixPackage": {
+        "packageFamilyName": "Microsoft.Windows.AssignedAccessDesigner_8wekyb3d8bbwe",
+        "packageFullName": "Microsoft.Windows.AssignedAccessDesigner_10.0.22621.2503_neutral__8wekyb3d8bbwe"
+      }
+    },
+    "AssignedAccessDesigner (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
