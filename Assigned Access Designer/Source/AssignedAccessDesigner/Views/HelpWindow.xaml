@@ -1,0 +1,52 @@
+<Window
+    x:Class="AssignedAccessDesigner.Views.HelpWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AssignedAccessDesigner.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Assigned Access Designer - Help">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <!-- Outer surface -->
+    <Grid Padding="16" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="*"/>
+            <!-- Scrollable content -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border CornerRadius="12" Padding="8" Margin="0" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Spacing="4" Margin="0">
+                    <TextBlock x:Name="SectionHeader"
+                               Text="About this view"
+                               FontSize="24"
+                               FontWeight="SemiBold"/>
+                    <Rectangle Height="2" Width="72"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Scrollable Body -->
+        <Border Grid.Row="1" CornerRadius="12" Padding="12" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="12,0,12,0">
+                <TextBlock x:Name="DescriptionText"
+                           Text="Helpful information goes here…"
+                           TextWrapping="Wrap"
+                           FontSize="16"/>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>

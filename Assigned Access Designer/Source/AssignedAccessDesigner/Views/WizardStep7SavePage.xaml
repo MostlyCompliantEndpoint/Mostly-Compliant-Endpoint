@@ -1,0 +1,30 @@
+<Page
+    x:Class="AssignedAccessDesigner.Views.WizardStep7SavePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel Padding="24" Spacing="12">
+        <TextBlock Text="Save policy" Style="{StaticResource TitleTextBlockStyle}" />
+        <TextBlock Text="Choose a file name and validate against the Assigned Access XSD."/>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBox x:Name="FileNameBox" Width="400" PlaceholderText="policy.xml"/>
+            <Button x:Name="SaveButton" Content="Save" Click="Save_Click"/>
+        </StackPanel>
+        <TextBlock x:Name="StatusText" TextWrapping="WrapWholeWords"/>
+
+        <Button x:Name="ShowXmlButton"
+                Content="Show XML"
+                Click="ShowXmlButton_Click"
+                HorizontalAlignment="Left" />
+
+        <!-- New: XML preview area -->
+            <TextBox x:Name="XmlPreviewBox"
+                 Visibility="Collapsed"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 MinHeight="120"
+                 FontFamily="Consolas"
+                 />
+    </StackPanel>
+</Page>

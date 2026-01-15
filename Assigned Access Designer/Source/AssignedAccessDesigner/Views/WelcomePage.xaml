@@ -1,0 +1,38 @@
+<Page
+    x:Class="AssignedAccessDesigner.Views.WelcomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:ui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="24">
+            <TextBlock Text="Assigned Access Policy Designer" Style="{StaticResource HeaderTextBlockStyle}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="16">
+                <Button x:Name="CreateBtn" Width="200" Height="80" Click="CreateBtn_Click">
+                    <Button.Content>
+                        <StackPanel HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE710;" />
+                            <TextBlock Text="Create Policy" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="EditBtn" Width="200" Height="80" Click="EditBtn_Click">
+                    <Button.Content>
+                        <StackPanel HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE70F;"/>
+                            <TextBlock Text="Edit Policy" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="MergeBtn" Width="200" Height="80" Click="MergeBtn_Click">
+                    <Button.Content>
+                        <StackPanel HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE8BB;"/>
+                            <TextBlock Text="Merge Policy" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
