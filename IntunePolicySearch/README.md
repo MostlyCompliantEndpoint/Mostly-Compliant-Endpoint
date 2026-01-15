@@ -1,10 +1,3 @@
----
-title: "Intune Policy Search: Find Any Intune Setting in Seconds"
-tags: [Intune, PowerShell, Microsoft Graph, Endpoint Management, Admin Tools]
-description: |
-  A PowerShell-based WPF tool for searching and exporting Intune policy settings across Settings Catalog, Templates, Compliance, and ADMX. Includes setup, usage, troubleshooting.
----
-
 # Intune Policy Search: Find Any Intune Setting in Seconds
 
 If you’ve ever tried to answer *“Where is this setting configured?”* across a sprawl of Intune policies—Settings Catalog, Templates, Compliance, and ADMX—you know it can mean a lot of clicking, exporting, and guesswork. **Intune Policy Search** eliminates that pain.
