@@ -123,7 +123,7 @@ function Import-Graph {
                 }
             }
             else {
-                throw "Neither '$gcchName' nor '$fallback' are available in this Microsoft.Graph SDK install. Run Get-MgEnvironment to see valid values."
+                throw "$gcchName does not appear to be available in this Microsoft.Graph SDK install. Run Get-MgEnvironment to see valid values."
             }
         }
         else {
@@ -291,10 +291,10 @@ function Get-GroupPolicyDefinitionValues {
             if ($defVal) {
                 if ($value -eq "Enabled") {
                     # Check for presentation values as well
-                    $presValues = Invoke-GraphGetAll -Uri $presUri -GraphSession $GraphSession
+                    $PresValues = Invoke-GraphGetAll -Uri $presUri -GraphSession $GraphSession
                     if ($presValues.Id) {
-                        foreach ($presentation in $presValues) {
-                            $presValue = $presentation.Value
+                        foreach ($presentation in $PresValues) {
+                            $PresValue = $presentation.Value
                             $presId = $Presentation.id
                             $itemVal = ""
                             if ($presentation."@odata.type" -eq "#microsoft.graph.groupPolicyPresentationValueList") {
@@ -442,6 +442,17 @@ function Get-ResultObject {
         $PolicyObject,
         [string]$Key,
         [string]$Needle
+    )
+
+    $Ignores = @("createdDateTime",
+        "description",
+        "displayName",
+        "version",
+        "supportsScopeTags",
+        "@odata.type",
+        "roleScopeTagIds",
+        "lastModifiedDateTime",
+        "id"
     )
 
 
@@ -670,7 +681,7 @@ function Get-ResultObject {
             # Catch all for any unknown or new settings that may come through as arrays/hashtables within arrays
 
 
-            foreach ($entry in $key) {
+            foreach ($entry in $val) {
                 if ($entry -is [hashtable]) {
                     foreach ($hashKey in $entry) {
 
@@ -1128,7 +1139,6 @@ $BtnSearch.Add_Click({
         $doConfig = [bool]$ChkConfigPolicies.IsChecked
         $doCompliance = [bool]$ChkCompliance.IsChecked  
         $doADMX = [bool]$ChkADMX.IsChecked
-        $doIntent = [bool]$ChkEndpointSec.IsChecked
    
         if (-not ($doConfig -or $doCompliance -or $doADMX -or $doIntent)) {
             Show-UiMessage "Select at least one policy type to search."
@@ -1678,7 +1688,7 @@ $BtnSearch.Add_Click({
         AddArgument($script:GraphSession).
         AddArgument($script:ConfigurationPolicies).
         AddArgument($script:LegacyPolicies).     
-        AddArgument($script:AdmxPolciies).
+        AddArgument($script:AdmxPolicies).
         AddArgument($script:ConfigurationPolicies_Settings).
         AddArgument($script:AdmxPolicies_Settings).
         AddArgument($script:RefreshPolicies).
@@ -1721,11 +1731,11 @@ $BtnSearch.Add_Click({
                         $script:ConfigurationPolicies = $PolicyInfo.Config
                         $script:ConfigurationPolicies_Settings = $PolicyInfo.ConfigSet
                         $script:LegacyPolicies = $PolicyInfo.Legacy
-                        $script:AdmxPolciies = $PolicyInfo.Admx
+                        $script:AdmxPolicies = $PolicyInfo.Admx
                         $script:AdmxPolicies_Settings = $PolicyInfo.AdmxSet
                         $script:EndpointProtection = $PolicyInfo.Endpoint
                         $script:EndpointProtection_Settings = $PolicyInfo.EndpointSet
-                        $script:CompliancePolicies = $PolifyInfo.Compliance
+                        $script:CompliancePolicies = $PolicyInfo.Compliance
 
 
                         foreach ($r in $results) {
