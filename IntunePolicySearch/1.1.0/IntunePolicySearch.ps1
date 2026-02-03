@@ -68,7 +68,6 @@ function Show-UiMessage {
     [System.Windows.MessageBox]::Show($Message, $Title, 'OK', 'Information') | Out-Null
 }
 
-
 function Import-Graph {
     param([bool]$UseGCCH)
 
@@ -177,7 +176,21 @@ function Import-Graph {
     }
 }
 
+function Remove-GraphConnection {
+    try {
+        Disconnect-MgGraph
+        $script:IsConnected = $false
+        return $true
+    }
+    catch {
+        if( (Get-MgContext).Account ){
+            $script:IsConnected = $true
+            return $false
+        }
 
+        return $false
+    }
+}
 
 
 function Invoke-GraphGetAll {
@@ -749,12 +762,12 @@ $width = [System.Windows.SystemParameters]::PrimaryScreenWidth
 $height = [System.Windows.SystemParameters]::PrimaryScreenHeight
 
 
-if ($width -ne $null -and $width -gt 0) {
+if ($null -ne $Width -and $width -gt 0) {
     $width = $width * 0.8
 }
 
 
-if ($height -ne $null -and $height -gt 0) {
+if ($null -ne $Height -and $height -gt 0) {
     $height = $height * 0.8
 }
 
@@ -894,6 +907,7 @@ if ($height -ne $null -and $height -gt 0) {
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -905,22 +919,28 @@ if ($height -ne $null -and $height -gt 0) {
                     Margin="0,0,10,0"
                     Content="Connect to Graph"/>
 
+            <Button x:Name="BtnDisonnect"
+                    Grid.Column="1"
+                    Width="160"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    Content="Disconnect"/>
 
             <CheckBox x:Name="ChkGcch"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     VerticalAlignment="Center"
                     Margin="0,0,10,0"
                     Content="GCC High"/>
 
 
             <TextBlock x:Name="TxtConnStatus"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     VerticalAlignment="Center"
                     Margin="0,0,10,0"/>
 
 
             <Button x:Name="BtnClear"
-                    Grid.Column="2"
+                    Grid.Column="4"
                     Width="120"
                     Height="30"
                     HorizontalAlignment="Right"
@@ -945,6 +965,7 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 
 # Find controls
 $BtnConnect = $window.FindName("BtnConnect")
+$BtnDisconnect = $window.FindName("BtnDisonnect")
 $ChkGcch = $window.FindName("ChkGcch")
 $TxtConnStatus = $window.FindName("TxtConnStatus")
 $BtnClear = $window.FindName("BtnClear")
@@ -1084,6 +1105,23 @@ $BtnConnect.Add_Click({
             Show-UiMessage -Message $_.Exception.Message -Title "Graph Connection Error"
         }
     })
+
+$BtnDisconnect.Add_Click({
+    try {
+        $TxtConnStatus.Text = "(Disconnecting from Graph...)"
+        $result = Remove-GraphConnection
+        if($result){
+            $TxtConnStatus.Text = "(Graph has been successfully disconnected)"
+        }
+        else{
+            throw ("Graph failed to disconnect")
+        }
+    }
+    catch {
+        $TxtConnStatus.Text = "(Error Disconnecting From Graph)"
+        Show-UiMessage -Message $_.Exception.Message -Title "Graph Disonnection Error"
+    }
+})
 
 
 $BtnClear.Add_Click({
